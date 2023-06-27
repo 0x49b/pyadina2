@@ -4,7 +4,6 @@ application
 Usage:
     python setup.py py2app
 """
-
 import os
 
 from setuptools import setup
