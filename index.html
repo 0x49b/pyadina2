@@ -1,37 +1,67 @@
 <!DOCTYPE html>
 <html>
 <head lang="en">
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-<style>
-    body{
-        background-color: #34495e;
-        color: #ecf0f1;
-    }
+    <style>
+        body {
+            background-color: #34495e;
+            color: #ecf0f1;
+            font-family: 'Helvetica', 'Arial', sans-serif;
+        }
 
-    #response-container {
-        display: none;
-        padding: 3rem;
-        margin: 3rem 5rem;
-        font-size: 120%;
-        border: 5px dashed #ccc;
-    }
+        .parent {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: 90% 10%;
+            grid-column-gap: 0px;
+            grid-row-gap: 0px;
+        }
 
-    label {
-        margin-left: 0.3rem;
-        margin-right: 0.3rem;
-    }
+        .div1 {
+            grid-area: 1 / 1 / 2 / 2;
+        }
 
-    button {
-        font-size: 100%;
-        padding: 0.5rem;
-        margin: 0.3rem;
-        text-transform: uppercase;
-    }
+        .div2 {
+            grid-area: 1 / 2 / 2 / 3;
+        }
 
-</style>
+        .div3 {
+            grid-area: 1 / 3 / 2 / 4;
+        }
+
+        .div4 {
+            grid-area: 2 / 1 / 3 / 4;
+            position: fixed;
+            bottom: 10px
+        }
+
+        .piadina-img {
+            width: 100px;
+            height: auto;
+        }
+
+        .piadina-box {
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
+<div class="parent">
+    <div class="div1 piadina-box">
+        <img class="piadina-img" src="./02_Vinyl_Logo_food.png" alt="logo">
+        <h3>Piadina 1</h3>
+    </div>
+    <div class="div2 piadina-box">
+        <img class="piadina-img" src="./02_Vinyl_Logo_food.png" alt="logo">
+        <h3>Piadina 2</h3>
+    </div>
+    <div class="div3 piadina-box">
+        <img class="piadina-img" src="./02_Vinyl_Logo_food.png" alt="logo">
+        <h3>Piadina 3</h3>
+    </div>
+    <div class="div4">gabba</div>
+</div>
 
 <!--
 <p id='pywebview-status'><i>pywebview</i> is not ready</p>
@@ -47,7 +77,7 @@
 <div id="response-container"></div>
 -->
 <script>
-    window.addEventListener('pywebviewready', function() {
+    window.addEventListener('pywebviewready', function () {
         var container = document.getElementById('pywebview-status')
         container.innerHTML = '<i>pywebview</i> is ready'
     })
@@ -66,7 +96,7 @@
     function doHeavyStuff() {
         var btn = document.getElementById('heavy-stuff-btn')
 
-        pywebview.api.doHeavyStuff().then(function(response) {
+        pywebview.api.doHeavyStuff().then(function (response) {
             showResponse(response)
             btn.onclick = doHeavyStuff
             btn.innerText = 'Perform a heavy operation'
