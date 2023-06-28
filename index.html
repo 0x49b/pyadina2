@@ -61,8 +61,9 @@
 
     </div>
 
-    <button id="place-order-button" onclick="placeOrder()">Place Order Customer</button>
-    <button id="reset-order-button" onclick="resetOrder()">Reset Order</button>
+    <button id="place-order-customer-button" class="finish-order-button" onclick="placeOrderCustomer()" disabled>Kunde</button>
+    <button id="place-order-kitchen-button" class="finish-order-button" onclick="placeOrderKitchen()" disabled>Küche</button>
+    <button id="reset-order-button" class="finish-order-button reset" onclick="resetOrder()">Löschen</button>
 
     <div class="div4" id="statusbar"></div>
 </div>

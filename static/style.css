@@ -37,8 +37,8 @@ body {
 }
 
 .piadina-img {
-    width: 100px;
-    height: auto;
+    width: auto;
+    height: 100px;
 }
 
 .piadina-box {
@@ -70,11 +70,7 @@ body {
     grid-area: plus;
 }
 
-.order-button {
-    width: 50px;
-    height: 50px;
-    font-size: 2rem;
-}
+
 
 h1 {
     font-size: 3rem;
@@ -89,6 +85,8 @@ h1 {
     padding-top: 50%;
     transform: translateY(-35%);
     overflow: hidden;
+
+    display: none;
 }
 
 .loader {
@@ -99,6 +97,27 @@ h1 {
     width: 200px;
     height: 200px;
     animation: spinner 2s linear infinite;
+}
+.order-button {
+    width: 50px;
+    height: 50px;
+    font-size: 2rem;
+    border: none;
+    border-radius: 5px;
+    background-color: #b8e994;
+}
+
+.finish-order-button {
+    width: 150px;
+    height: 50px;
+    border: none;
+    border-radius: 5px;
+    background-color: #f6b93b;
+    font-size: 1.2rem;
+}
+.reset{
+    background-color: #eb2f06;
+    color: #f1f2f6;
 }
 
 @keyframes spinner {

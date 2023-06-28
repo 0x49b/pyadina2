@@ -1,0 +1,23 @@
+{
+  "system": {
+    "debug": "True",
+    "fullscreen": "False",
+    "frameless": "False",
+    "width": 800,
+    "height": 480
+  },
+  "piadina": {
+    "0": {
+      "name": "Han",
+      "image": "food.png"
+    },
+    "1": {
+      "name": "Padme",
+      "image": "food.png"
+    },
+    "2": {
+      "name": "Obi-Wan",
+      "image": "logo.jpeg"
+    }
+  }
+}
