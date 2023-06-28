@@ -4,8 +4,25 @@ import sys
 import random
 import webview
 
+from printing.Printing import Printing
+
 
 class Api:
+    config = {
+        0: {
+            "name": "Han",
+            "image": "food.png"
+        },
+        1: {
+            "name": "Padme",
+            "image": "food.png"
+        },
+        2: {
+            "name": "Obi-Wan",
+            "image": "food.png"
+        }
+    }
+
     def __init__(self):
         self.cancel_heavy_stuff_flag = False
 
@@ -14,6 +31,9 @@ class Api:
             'message': 'Hello from Python {0}'.format(sys.version)
         }
         return response
+
+    def getConfig(self):
+        return self.config
 
     def getRandomNumber(self):
         response = {
@@ -51,8 +71,13 @@ class Api:
     def error(self):
         raise Exception('This is a Python exception')
 
+    def placeOrder(self, order):
+        print(order)
+        printing = Printing()
+        printing.print_customer_receipt()
+
 
 if __name__ == '__main__':
     api = Api()
     window = webview.create_window('Pyadina', 'index.html', js_api=api, width=800, height=480)
-    webview.start(debug=True)
+    webview.start()

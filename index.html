@@ -2,128 +2,70 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-
-    <style>
-        body {
-            background-color: #34495e;
-            color: #ecf0f1;
-            font-family: 'Helvetica', 'Arial', sans-serif;
-        }
-
-        .parent {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            grid-template-rows: 90% 10%;
-            grid-column-gap: 0px;
-            grid-row-gap: 0px;
-        }
-
-        .div1 {
-            grid-area: 1 / 1 / 2 / 2;
-        }
-
-        .div2 {
-            grid-area: 1 / 2 / 2 / 3;
-        }
-
-        .div3 {
-            grid-area: 1 / 3 / 2 / 4;
-        }
-
-        .div4 {
-            grid-area: 2 / 1 / 3 / 4;
-            position: fixed;
-            bottom: 10px
-        }
-
-        .piadina-img {
-            width: 100px;
-            height: auto;
-        }
-
-        .piadina-box {
-            text-align: center;
-        }
-    </style>
+    <link rel="stylesheet" href="./static/style.css">
 </head>
 <body>
+<div class="loader-box" id="loader-box">
+    <div class="loader"></div>
+</div>
 <div class="parent">
     <div class="div1 piadina-box">
-        <img class="piadina-img" src="./02_Vinyl_Logo_food.png" alt="logo">
-        <h3>Piadina 1</h3>
+
+        <img class="piadina-img" src="./static/food.png" alt="logo">
+        <h3 id="piadina-0">Piadina 1</h3>
+
+        <div class="piadina-order">
+            <div class="counter">
+                <h1 data-typeId="0">0</h1>
+            </div>
+            <div class="minus">
+                <button class="order-button" data-typeId="0">-</button>
+            </div>
+            <div class="plus">
+                <button class="order-button" data-typeId="0">+</button>
+            </div>
+        </div>
+
+
     </div>
     <div class="div2 piadina-box">
-        <img class="piadina-img" src="./02_Vinyl_Logo_food.png" alt="logo">
-        <h3>Piadina 2</h3>
+        <img class="piadina-img" src="./static/food.png" alt="logo">
+        <h3 id="piadina-1">Piadina 2</h3>
+        <div class="piadina-order">
+            <div class="counter">
+                <h1 data-typeId="1">0</h1>
+            </div>
+            <div class="minus">
+                <button class="order-button" data-typeId="1">-</button>
+            </div>
+            <div class="plus">
+                <button class="order-button" data-typeId="1">+</button>
+            </div>
+        </div>
+
     </div>
     <div class="div3 piadina-box">
-        <img class="piadina-img" src="./02_Vinyl_Logo_food.png" alt="logo">
-        <h3>Piadina 3</h3>
+        <img class="piadina-img" src="./static/food.png" alt="logo">
+        <h3 id="piadina-2">Piadina 3</h3>
+        <div class="piadina-order">
+            <div class="counter">
+                <h1 data-typeId="2">0</h1>
+            </div>
+            <div class="minus">
+                <button class="order-button" data-typeId="2">-</button>
+            </div>
+            <div class="plus">
+                <button class="order-button" data-typeId="2">+</button>
+            </div>
+        </div>
+
     </div>
-    <div class="div4">gabba</div>
+
+    <button id="place-order-button" onclick="placeOrder()">Place Order Customer</button>
+    <button id="reset-order-button" onclick="resetOrder()">Reset Order</button>
+
+    <div class="div4" id="statusbar"></div>
 </div>
-
-<!--
-<p id='pywebview-status'><i>pywebview</i> is not ready</p>
-
-<button onClick="initialize()">Hello Python</button><br/>
-<button id="heavy-stuff-btn" onClick="doHeavyStuff()">Perform a heavy operation</button><br/>
-<button onClick="getRandomNumber()">Get a random number</button><br/>
-<label for="name_input">Say hello to:</label><input id="name_input" placeholder="put a name here">
-<button onClick="greet()">Greet</button><br/>
-<button onClick="catchException()">Catch Exception</button><br/>
-
-
-<div id="response-container"></div>
--->
-<script>
-    window.addEventListener('pywebviewready', function () {
-        var container = document.getElementById('pywebview-status')
-        container.innerHTML = '<i>pywebview</i> is ready'
-    })
-
-    function showResponse(response) {
-        var container = document.getElementById('response-container')
-
-        container.innerText = response.message
-        container.style.display = 'block'
-    }
-
-    function initialize() {
-        pywebview.api.init().then(showResponse)
-    }
-
-    function doHeavyStuff() {
-        var btn = document.getElementById('heavy-stuff-btn')
-
-        pywebview.api.doHeavyStuff().then(function (response) {
-            showResponse(response)
-            btn.onclick = doHeavyStuff
-            btn.innerText = 'Perform a heavy operation'
-        })
-
-        showResponse({message: 'Working...'})
-        btn.innerText = 'Cancel the heavy operation'
-        btn.onclick = cancelHeavyStuff
-    }
-
-    function cancelHeavyStuff() {
-        pywebview.api.cancelHeavyStuff()
-    }
-
-    function getRandomNumber() {
-        pywebview.api.getRandomNumber().then(showResponse)
-    }
-
-    function greet() {
-        var name_input = document.getElementById('name_input').value;
-        pywebview.api.sayHelloTo(name_input).then(showResponse)
-    }
-
-    function catchException() {
-        pywebview.api.error().catch(showResponse)
-    }
-
-</script>
+<script src="./static/main.js"></script>
 </body>
 </html>
