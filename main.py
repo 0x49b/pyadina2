@@ -1,31 +1,41 @@
+from datetime import date, datetime
+
 import webview
 from printing.Printing import Printing
 import json
 import sqlite3
+
+from storage.Storage import Storage
 
 
 class Api:
     config = {}
     db = None
     cur = None
+    storage = None
+    printing = None
 
     def __init__(self, config):
         self.cancel_heavy_stuff_flag = False
         self.config = config
+        self.printing = Printing()
+        self.storage = Storage()
 
     def getConfig(self):
         return self.config
 
     def placeOrder(self, order):
-        print(order)
-        self.store_order(order)
-        printing = Printing()
-        printing.print_customer_receipt()
+        order_number = self.storage.get_current_order() + 1
+        order_json = json.loads(order)
 
-    def store_order(self, order):
-        logfile = open("orders.txt", "a")
-        logfile.write(order + "\n")
-        logfile.close()
+        today = date.today()
+        time = datetime.now()
+        d = today.strftime("%d.%m.%Y")
+        h = time.strftime("%H:%M:%S.%f")
+
+        self.storage.add_order(
+            [order_number, order_json["0"], order_json["1"], order_json["2"], order, h, d])
+        # self.printing.print_customer_receipt()
 
 
 if __name__ == '__main__':
