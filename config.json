@@ -17,7 +17,10 @@
     },
     "2": {
       "name": "Obi-Wan",
-      "image": "logo.jpeg"
+      "image": "vegy.png"
+    },
+    "system":{
+      "timeout": 1000
     }
   }
 }

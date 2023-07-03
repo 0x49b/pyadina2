@@ -14,6 +14,7 @@ class Storage(object):
     migrations_path = './migrations'  # todo check if works with py2app and pyinstaller
 
     def __init__(self):
+        print('applying db migrations if any')
         caribou.upgrade(self.db_path, self.migrations_path)
         self.con = sqlite3.connect("pyadina.db", check_same_thread=False)
         self.cur = self.con.cursor()

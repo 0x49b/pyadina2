@@ -9,6 +9,8 @@ const order = {
     "timestamp": new Date()
 };
 
+let config = {}
+
 setInterval(() => {
     const dat = new Date();
     const d = dat.toLocaleDateString('de-CH');
@@ -54,19 +56,18 @@ const updatePiadinaCounter = (c) => {
     checkPlaceOrderButton();
 };
 
+let to = undefined;
+
 const placeOrderCustomer = () => {
     if (order["0"] === 0 && order["1"] === 0 && order["2"] === 0) return;
     order.timestamp = new Date();
     pywebview.api.placeOrder(JSON.stringify(order));
-    resetOrder();
+    to = setTimeout(() => {
+        resetOrder();
+        clearTimeout(to);
+    }, config.system.timeout);
 };
 
-const placeOrderKitchen = () => {
-    if (order["0"] === 0 && order["1"] === 0 && order["2"] === 0) return;
-    order.timestamp = new Date();
-    pywebview.api.placeOrder(JSON.stringify(order));
-    resetOrder();
-};
 
 const resetOrder = () => {
     order["0"] = 0;
@@ -87,19 +88,16 @@ const updateLabels = () => {
 
 const checkPlaceOrderButton = () => {
     const placeOrderCustomerButton = document.getElementById("place-order-customer-button");
-    const placeOrderKitchenButton = document.getElementById("place-order-kitchen-button");
-
     if (order["0"] === 0 && order["1"] === 0 && order["2"] === 0) {
         placeOrderCustomerButton.disabled = true;
-        placeOrderKitchenButton.disabled = true;
         return;
     }
     placeOrderCustomerButton.disabled = false;
-    placeOrderKitchenButton.disabled = false;
 };
 
 function updateUI(response) {
     console.log("Loaded Config " + JSON.stringify(response));
+    config = response;
 
     const p0 = document.getElementById("piadina-0");
     const p1 = document.getElementById("piadina-1");
@@ -119,11 +117,6 @@ function updateUI(response) {
 
     updateLabels();
     checkPlaceOrderButton();
-
-    setTimeout(() => {
-        const loaderBox = document.getElementById("loader-box");
-        loaderBox.style.display = 'none';
-    }, 2000);
 }
 
 window.addEventListener('pywebviewready', function () {
