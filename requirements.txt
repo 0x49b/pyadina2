@@ -11,7 +11,7 @@ distlib==0.3.6
 django-qrcode==0.3
 docutils==0.20.1
 filelock==3.12.2
-fonttools==4.40.0
+fonttools==4.41.0
 fpdf2==2.7.4
 idna==3.4
 macholib==1.16.2
