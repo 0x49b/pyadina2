@@ -18,7 +18,7 @@ macholib==1.16.2
 modulegraph==0.19.5
 pefile==2023.2.7
 Pillow==10.0.0
-platformdirs==3.5.3
+platformdirs==3.8.1
 proxy-tools==0.1.0
 py2app==0.28.6
 pycparser==2.21
