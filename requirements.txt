@@ -17,7 +17,7 @@ idna==3.4
 macholib==1.16.2
 modulegraph==0.19.5
 pefile==2023.2.7
-Pillow==9.5.0
+Pillow==10.0.0
 platformdirs==3.5.3
 proxy-tools==0.1.0
 py2app==0.28.6
