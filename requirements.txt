@@ -24,7 +24,7 @@ py2app==0.28.6
 pycparser==2.21
 Pygments==2.15.1
 pyinstaller==5.13.0
-pyinstaller-hooks-contrib==2023.4
+pyinstaller-hooks-contrib==2023.5
 pyobjc-core==9.2
 pyobjc-framework-Cocoa==9.2
 pyobjc-framework-Security==9.2
