@@ -1,6 +1,5 @@
-import os
 from fpdf import FPDF
-import qrcode
+import json
 
 '''
 sudo apt-get update && sudo apt-get install cups cups-client lpr
@@ -14,30 +13,62 @@ os.system("lpr -P printer_name printMe.txt")
 
 
 class Printing(object):
-    def __init__(self):
+    page_width = 52
+    config = None
+    current_y = 0
+
+    def __init__(self, config):
         print("starting printer")
+        self.config = config
+        print(self.config)
 
-    def print_customer_receipt(self):
-        filename = 'order.pdf'
+    def print_receipt(self, order, order_num, customer=True, filename=''):
 
-        pdf = FPDF('P', 'mm')
+        pdf = FPDF(orientation='P', unit='mm')
         pdf.add_page()
-        pdf.image('./static/logo.jpeg', w=35, h=35, x=6, y=5)
-        #pdf.set_font('Arial', 'B', 24)
-        num = '#42'
-        swi = pdf.get_string_width(num)
-        pdf.set_y(48)
-        pdf.set_x((52 / 2) - (swi / 2))
-        pdf.cell(w=43, h=0, txt=num)
-        pdf.image('./static/instagram.jpeg', w=5, h=5, x=0, y=55)
-        # pdf.set_font('Arial', '', 12)
-        pdf.set_y(57.5)
-        pdf.set_x(6)
-        ist = 'neophytbadenfahrt'
-        iwi = pdf.get_string_width(ist)
-        pdf.cell(w=iwi, h=0, txt=ist)
-        pdf.write('\n\n\n')
-        pdf.output(filename, 'F')
+        pdf.set_font("helvetica", "B", 24)
 
-        os.system("lpr -P ZJ-58 " + filename)
-        # subprocess.run(["lp", filename])
+        # Neo-Phyt Logo
+        if customer:
+            pdf.image('./static/logo.jpeg', w=35, h=35, x=6, y=5)
+
+        # Order Number
+        order_no = "#{}".format(order_num)
+        order_num_width = pdf.get_string_width(order_no)
+        if customer:
+            self.current_y = 42
+        else:
+            self.current_y = 5
+        pdf.set_y(self.current_y)
+        pdf.set_x((self.page_width / 2) - (order_num_width / 2) - 2)
+        pdf.cell(w=order_num_width, h=16, txt=order_no, align='L')
+
+        # Order
+        pdf.set_font("helvetica", '', size=8)
+        self.current_y = 55
+        if order["0"] > 0:
+            self.piadina_list(pdf, "0", order)
+        if order["1"] > 0:
+            self.piadina_list(pdf, "1", order)
+        if order["2"] > 0:
+            self.piadina_list(pdf, "2", order)
+
+        if customer:
+            self.current_y = self.current_y + 10
+            pdf.image('./static/instagram.jpeg', w=5, h=5, x=0, y=self.current_y)
+            pdf.set_y(self.current_y - 1.5)
+            pdf.set_x(6)
+            ist = 'neophytbadenfahrt'
+            iwi = pdf.get_string_width(ist)
+            pdf.cell(w=iwi, h=8, txt=ist)
+
+        pdf.output(filename)
+
+    def piadina_list(self, pdf, piadina, order):
+        piadina_string = "{} x {}".format(order[piadina], self.config[piadina]["name"])
+        piadina_string_width = pdf.get_string_width(piadina_string)
+
+        pdf.set_y(self.current_y)
+        pdf.set_x((self.page_width / 2) - (piadina_string_width / 2) - 2)
+        pdf.cell(w=piadina_string_width, h=16, txt=piadina_string)
+        self.current_y = self.current_y + 5
