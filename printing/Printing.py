@@ -1,5 +1,5 @@
 from fpdf import FPDF
-import json
+
 
 '''
 sudo apt-get update && sudo apt-get install cups cups-client lpr

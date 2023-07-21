@@ -1,12 +1,9 @@
 from datetime import date, datetime
-import time
 import webview
 from printing.Printing import Printing
 import json
-import sqlite3
 
 from storage.Storage import Storage
-
 
 
 class Api:
