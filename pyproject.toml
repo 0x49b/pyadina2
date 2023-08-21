@@ -10,6 +10,8 @@ python = "^3.11"
 caribou = "^0.3.0"
 pywebview = "^4.2.2"
 fpdf2 = "^2.7.4"
+matplotlib = "^3.7.2"
+numpy = "^1.25.2"
 
 
 [build-system]

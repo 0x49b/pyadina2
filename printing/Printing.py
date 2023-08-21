@@ -52,6 +52,8 @@ class Printing(object):
             self.piadina_list(pdf, "1", order)
         if order["2"] > 0:
             self.piadina_list(pdf, "2", order)
+        if order["3"] > 0:
+            self.piadina_list(pdf, "3", order)
 
         if customer:
             self.current_y = self.current_y + 10

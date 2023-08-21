@@ -19,6 +19,11 @@
       "name": "Obi-Wan",
       "image": "vegy.png"
     },
+
+    "3": {
+      "name": "Qui-Gon",
+      "image": "apero.png"
+    },
     "system":{
       "timeout": 1000
     }

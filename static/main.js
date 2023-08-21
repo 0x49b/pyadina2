@@ -6,6 +6,7 @@ const order = {
     0: 0,
     1: 0,
     2: 0,
+    3: 0,
     "timestamp": new Date()
 };
 
@@ -59,7 +60,7 @@ const updatePiadinaCounter = (c) => {
 let to = undefined;
 
 const placeOrderCustomer = () => {
-    if (order["0"] === 0 && order["1"] === 0 && order["2"] === 0) return;
+    if (order["0"] === 0 && order["1"] === 0 && order["2"] === 0 && order["3"] === 0) return;
     order.timestamp = new Date();
     pywebview.api.placeOrder(JSON.stringify(order));
     to = setTimeout(() => {
@@ -73,6 +74,7 @@ const resetOrder = () => {
     order["0"] = 0;
     order["1"] = 0;
     order["2"] = 0;
+    order["3"] = 0;
     updateLabels();
     checkPlaceOrderButton();
 };
@@ -88,7 +90,7 @@ const updateLabels = () => {
 
 const checkPlaceOrderButton = () => {
     const placeOrderCustomerButton = document.getElementById("place-order-customer-button");
-    if (order["0"] === 0 && order["1"] === 0 && order["2"] === 0) {
+    if (order["0"] === 0 && order["1"] === 0 && order["2"] === 0 && order["3"] === 0) {
         placeOrderCustomerButton.disabled = true;
         return;
     }
@@ -102,12 +104,14 @@ function updateUI(response) {
     const p0 = document.getElementById("piadina-0");
     const p1 = document.getElementById("piadina-1");
     const p2 = document.getElementById("piadina-2");
+    const p3 = document.getElementById("piadina-3");
 
     const piadinaImg = document.getElementsByClassName("piadina-img");
 
     p0.innerText = response[0].name;
     p1.innerText = response[1].name;
     p2.innerText = response[2].name;
+    p3.innerText = response[3].name;
 
     let o = 0;
     for (let i of piadinaImg) {
