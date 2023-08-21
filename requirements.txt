@@ -4,7 +4,7 @@ caribou==0.3.0
 certifi==2023.5.7
 cffi==1.15.1
 charset-normalizer==3.1.0
-clr-loader==0.2.5
+clr-loader==0.2.6
 colorama==0.4.6
 defusedxml==0.7.1
 distlib==0.3.6
