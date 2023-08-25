@@ -22,3 +22,4 @@ __pycache__
 customer.pdf
 order.pdf
 /kitchen.pdf
+*.db
