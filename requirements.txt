@@ -6,7 +6,7 @@ defusedxml==0.7.1
 fonttools==4.41.0
 fpdf2==2.7.4
 kiwisolver==1.4.4
-matplotlib==3.7.2
+matplotlib==3.9.2
 numpy==1.25.2
 packaging==23.1
 Pillow==10.0.0
